@@ -5,28 +5,38 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './shared/auth.guard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgbCollapseModule ,NgbNavModule ,NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { PlatformAccountConfigurationComponent } from './platform-account-configuration/platform-account-configuration.component';
+import { InvestmentsComponent } from './investments/investments.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
-    HomeComponent,
-    CounterComponent,
-    FetchDataComponent
+    NavBarComponent,
+    ProfileComponent,
+    PlatformAccountConfigurationComponent,
+    InvestmentsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
-    ])
+      // canActivate: [AuthGuard]
+      // { path: 'profile', component: ProfileComponent },
+      { path: 'platform-account-configuration', component: PlatformAccountConfigurationComponent },
+      { path: 'investments', component: InvestmentsComponent },
+    ]),
+    NgbCollapseModule,
+    NgbNavModule,
+    NgbPaginationModule, 
+    NgbAlertModule
   ],
   providers: [],
   bootstrap: [AppComponent]
