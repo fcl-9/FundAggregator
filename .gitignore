@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/FundAggregator.API/bin/Debug/netcoreapp3.1
+/.vs/FundAggregator
+/FundAggregator.API/obj
+/FundAggregator.API/FundAggregator.API.csproj.user
+/FundAggregator.UI/bin/Debug/netcoreapp3.1
+/FundAggregator.UI/FundAggregator.UI.csproj.user
