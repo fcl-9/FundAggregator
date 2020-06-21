@@ -1,33 +1,31 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ɵConsole } from '@angular/core';
 import { ConfiguredPlatformViewModel } from '../models/viewmodel/configured-platform-view-model';
 import { CreatePlatformAccountConfigurationCommand } from '../models/commands/create-platform-account-configuration-command';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AppConfig } from '../config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlatformConfigurationService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   getConfiguredProducts(): Promise<Array<ConfiguredPlatformViewModel>> {
-    const hlConfiguration: ConfiguredPlatformViewModel = {
-      platformLogoName: "HargreavesLansdown",
-      platformName: "Hargreaves Lansdown",
-      username: "Username1",
-      password: "Password1", 
-      configurationStatus: "Invalid"
-    };
-    const vanguardConfiguration: ConfiguredPlatformViewModel = {
-      platformLogoName: "Vanguard",
-      platformName: "Vanguard",
-      username: "Username1",
-      password: "Password1",
-      configurationStatus: "Active"
-    };
-    return Promise.resolve([hlConfiguration, vanguardConfiguration]);
+
+  
+    return this.httpClient.get<Array<ConfiguredPlatformViewModel>>(AppConfig.apiEndpoint + "/platform/accounts").toPromise();
+  }
+
+  getAvailablePlatforms(): Promise<Array<string>>{
+
+    return this.httpClient.get<Array<string>>(AppConfig.apiEndpoint + "/platform").toPromise();
   }
 
   createConfigurationForProduct(createProductConfigurationCommand: CreatePlatformAccountConfigurationCommand) {
-    return Promise.resolve("");
+    let headers = new HttpHeaders({'Content-Type': 'application/json'});
+    let options = { headers: headers };
+    return this.httpClient.post(AppConfig.apiEndpoint + "/platform/accounts", JSON.stringify(createProductConfigurationCommand), options).toPromise();
   }
 }

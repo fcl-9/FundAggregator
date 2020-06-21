@@ -27,8 +27,13 @@ namespace FundAggregator.API
             });
             services.AddSingleton<IDocumentStore>(new DocumentStore()
             {
-                Urls = new[] { "http://localhost:8989" }
+                Urls = new[] { "http://localhost:8989" }, 
+                Database = "PlatformConfiguration"
             }.Initialize()            );
+            services.AddCors(options =>
+            {
+                options.AddPolicy("UIPolicy", builder => builder.WithOrigins("https://localhost:4001").AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,7 +43,6 @@ namespace FundAggregator.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseHttpsRedirection();
 
             app.UseSwagger();
@@ -48,9 +52,8 @@ namespace FundAggregator.API
             });
 
             app.UseRouting();
-
+            app.UseCors("UIPolicy");
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -1,14 +1,49 @@
-<div class="row"  >
-    <div class="col-sm-3" *ngFor="let platformConfiguration of platformsConfigured; let i = index">
-      <div class="card">
-        <div class="card-body">
-          <img class="card-img-top" src="../../assets/platform-logos/{{platformConfiguration.platformLogoName}}.svg">
-          <div class="account-information">
-            <p class="card-text">Username: {{platformConfiguration.username}}</p>
-            <p class="card-text">Password: {{platformConfiguration.password}}</p>
-            <p class="card-text">Status: </p>
-          </div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Platform Account</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="platform">Select Platform:</label>
+        <select class="form-control" id="platform" [(ngModel)]="newPlatformConfiguration.platformName" name="platformName">
+          <option *ngFor="let platform of platforms;" >{{platform}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="email">Username:</label>
+        <input type="email" class="form-control" placeholder="Enter email" id="email" name="email" [(ngModel)]="newPlatformConfiguration.username">
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" placeholder="Enter password" id="pwd" name="password" [(ngModel)]="newPlatformConfiguration.password">
+      </div>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="createPlatformConfiguration()">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add Accounts</button>
+
+
+<div class="row">
+  <div class="col-sm-3" *ngFor="let platformConfiguration of platformsConfigured; let i = index">
+    <div class="card">
+      <div class="card-body">
+        <img class="card-img-top" src="../../assets/platform-logos/{{platformConfiguration.platformLogoName}}.svg">
+        <div class="account-information">
+          <p class="card-text">Username: {{platformConfiguration.username}}</p>
+          <p class="card-text">Password: {{platformConfiguration.password}}</p>
+          <p class="card-text">Status: </p>
         </div>
       </div>
     </div>
+  </div>
 </div>

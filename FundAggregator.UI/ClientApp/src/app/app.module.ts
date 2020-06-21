@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -9,9 +9,10 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './shared/auth.guard';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {NgbCollapseModule ,NgbNavModule ,NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbNavModule, NgbPaginationModule, NgbAlertModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { PlatformAccountConfigurationComponent } from './platform-account-configuration/platform-account-configuration.component';
 import { InvestmentsComponent } from './investments/investments.component';
+import { initApp } from './config';
 
 
 
@@ -36,9 +37,17 @@ import { InvestmentsComponent } from './investments/investments.component';
     NgbCollapseModule,
     NgbNavModule,
     NgbPaginationModule, 
-    NgbAlertModule
+    NgbAlertModule,
+    NgbModalModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initApp,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
