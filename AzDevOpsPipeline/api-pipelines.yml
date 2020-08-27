@@ -18,4 +18,5 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
-    projects: '**/FundAggregator/FundAggregator.API/FundAggregator.API.csproj'
+    projects: 'FundAggregator.API/FundAggregator.API.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
