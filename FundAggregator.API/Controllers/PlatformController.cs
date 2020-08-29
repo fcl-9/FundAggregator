@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using FundAggregator.API.Commands;
 using FundAggregator.API.ViewModel;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Raven.Client.Documents;
-using Raven.Client.Documents.Commands;
-using Raven.Client.Documents.Session;
 
 namespace FundAggregator.API.Controllers
 {

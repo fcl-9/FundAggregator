@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "FundAggregator.Worker": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
