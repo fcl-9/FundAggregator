@@ -13,8 +13,8 @@ namespace FundAggregator.Worker.Shared.DataTransferObject
         public string Isin { get; set; }
 
         // Compostion
-        Dictionary<string, decimal> TopTenGeography { get; }
-        Dictionary<string, decimal> TopTenSectors { get; }
+        public Dictionary<string, decimal> TopTenGeography { get; }
+        public Dictionary<string, decimal> TopTenSectors { get; }
         
         public FundAggregatorData() {
             TopTenGeography = new Dictionary<string, decimal>();

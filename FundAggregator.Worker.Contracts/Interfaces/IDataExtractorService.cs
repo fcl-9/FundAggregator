@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FundAggregator.Worker.CharlesStanley.ExternalModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,8 +7,9 @@ namespace FundAggregator.Worker.CharlesStanley
 {
     public interface IDataExtractorService
     {
-        void ExtractTopTenGeographies(string rawData);
+        string ExtractFundName(string rawData);
+        IList<TopTen> ExtractTopTenGeographies(string rawData);
 
-        void ExtractTopTenSectors(string rawData);
+        IList<TopTen> ExtractTopTenSectors(string rawData);
     }
 }

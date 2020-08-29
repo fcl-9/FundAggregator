@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
-namespace FundAggregator.Worker.HargreavesLansdown
+namespace FundAggregator.Worker.CharlesStanley.Services
 {
     public class DataExtractorService : IDataExtractorService
     {
+        const string fundNameRegexPattern = "(\")(.*?)(\")";
         const string topTenSectorsInitialRegexPattern = "(var dataCompositionSectors =?)";
         const string topTenSectorsRegexPattern = @"(var dataCompositionSectors =?)(.*?)(])";
         const string topTenGeographyInitialRegexPattern = "(var dataCompositionGeography =?)";
@@ -21,44 +22,56 @@ namespace FundAggregator.Worker.HargreavesLansdown
             _logger = logger;
         }
 
-        public void ExtractTopTenGeographies(string rawData)
+        public string ExtractFundName(string rawData)
+        {
+            var regexMatch = Regex.Match(rawData, fundNameRegexPattern);
+            if (!regexMatch.Success)
+            {
+                _logger.LogError("Could not find the pattern for FundName page may have been modified.");
+                return string.Empty;
+            }
+            return regexMatch.Value;
+        }
+
+        public IList<TopTen> ExtractTopTenGeographies(string rawData)
         {
             var regexMatch = Regex.Match(rawData, topTenGeographyRegexPattern);
             if (!regexMatch.Success) {
                 _logger.LogError("Could not find the pattern for TopTenGeographies page may have been modified.");
-                return;
+                return new List<TopTen>();
             }
             var topTenGeography = Regex.Replace(regexMatch.Value, removePercentages, string.Empty);
             topTenGeography = Regex.Replace(topTenGeography, topTenGeographyInitialRegexPattern, string.Empty);
 
             try
             {
-                var topTen = JsonSerializer.Deserialize<IList<TopTen>>(topTenGeography);
+                return JsonSerializer.Deserialize<IList<TopTen>>(topTenGeography);
             }
             catch (Exception e) {
-                _logger.LogError("Could not convert TopTenGeographies data into internal data type.");
+                _logger.LogError("Could not convert TopTenGeographies data into internal data type.", e.Message);
             }
-
+            return new List<TopTen>();
         }
 
-        public void ExtractTopTenSectors(string rawData)
+        public IList<TopTen> ExtractTopTenSectors(string rawData)
         {
             var regexMatch = Regex.Match(rawData, topTenSectorsRegexPattern);
             if (!regexMatch.Success)
             {
                 _logger.LogError("Could not find the pattern for TopTenSectors page may have been modified.");
-                return;
+                return new List<TopTen>();
             }
             var topTenSectors = Regex.Replace(regexMatch.Value, removePercentages, string.Empty);
             topTenSectors = Regex.Replace(topTenSectors, topTenSectorsInitialRegexPattern, string.Empty);
             try
             {
-                var topTen = JsonSerializer.Deserialize<IList<TopTen>>(topTenSectors);
+                return JsonSerializer.Deserialize<IList<TopTen>>(topTenSectors);
             }
             catch (Exception e)
             {
-                _logger.LogError("Could not convert TopTenSectors data into internal data type.");
+                _logger.LogError("Could not convert TopTenSectors data into internal data type.", e.Message);
             }
+            return new List<TopTen>();
         }
     }
 }

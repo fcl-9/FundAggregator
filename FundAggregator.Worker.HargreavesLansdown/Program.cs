@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
-using FundAggregator.Worker.CharlesStanley;
+using FundAggregator.Worker.CharlesStanley.Services;
 using FundAggregator.Worker.HargreavesLansdown.Services;
+using FundAggregator.Worker.Shared.Infrastructure;
+using FundAggregator.Worker.Shared.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace FundAggregator.Worker.HargreavesLansdown
+namespace FundAggregator.Worker.CharlesStanley
 {
     public class Program
     {
@@ -22,6 +18,7 @@ namespace FundAggregator.Worker.HargreavesLansdown
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
+                    services.AddSingleton<IFundDataRepository, FundDataRepository>();
                     services.AddSingleton<IDataExtractorService, DataExtractorService>();
                     services.AddHttpClient<IDataPullingService, DataPullingService>();
                     services.AddHostedService<Worker>();

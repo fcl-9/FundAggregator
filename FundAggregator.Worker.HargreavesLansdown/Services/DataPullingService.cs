@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FundAggregator.Worker.HargreavesLansdown.Services;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace FundAggregator.Worker.HargreavesLansdown.Services
+namespace FundAggregator.Worker.CharlesStanley.Services
 {
     class DataPullingService: IDataPullingService
     {
