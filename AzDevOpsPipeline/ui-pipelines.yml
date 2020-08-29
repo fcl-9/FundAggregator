@@ -19,4 +19,4 @@ steps:
   inputs:
     command: 'publish'
     publishWebProjects: false
-    projects: 'FundAggregator/FundAggregator.UI/FundAggregator.UI.csproj'
+    projects: 'FundAggregator.UI/FundAggregator.UI.csproj'
