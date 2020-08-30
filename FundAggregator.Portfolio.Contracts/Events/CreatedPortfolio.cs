@@ -9,5 +9,6 @@ namespace FundAggregator.Portfolio.Contracts.Events
     public class CreatedPortfolio : IEvent, IPortfolioMessage
     {
         public Guid PortfolioId { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

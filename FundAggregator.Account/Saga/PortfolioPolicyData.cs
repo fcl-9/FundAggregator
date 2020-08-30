@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FundAggregator.Portfolio.Saga
+namespace FundAggregator.Portfolio.Service.Saga
 {
     public  class PortfolioPolicyData : IContainSagaData
     {

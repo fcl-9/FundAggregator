@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FundAggregator.Portfolio.Contracts.Model
 {
     public class Investment
     {
+        public Guid InvestmentId { get; set; }
+        public Guid FundIdentifider { get; set; }
+        public decimal Units { get; set; }
+        public InvestmentStatus Status { get; set; }
     }
 }

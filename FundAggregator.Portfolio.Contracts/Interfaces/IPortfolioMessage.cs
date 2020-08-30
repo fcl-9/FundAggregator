@@ -7,5 +7,6 @@ namespace FundAggregator.Portfolio.Contracts.Interfaces
     public interface IPortfolioMessage
     {
         public Guid PortfolioId { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

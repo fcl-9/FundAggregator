@@ -11,5 +11,6 @@ namespace FundAggregator.Portfolio.Contracts.Commands
     {
         public Guid PortfolioId { get; set; }
         public List<Investment> NewInvestmenets { get; set; }
+        public DateTime CreatedDate { get; set; }
     }
 }

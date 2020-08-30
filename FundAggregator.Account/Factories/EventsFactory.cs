@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FundAggregator.Portfolio.Factories
+namespace FundAggregator.Portfolio.Service.Factories
 {
     internal class EventsFactory : IEventsFactory
     {
