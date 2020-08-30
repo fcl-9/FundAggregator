@@ -20,15 +20,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Tools\keyVault.ps1 = Tools\keyVault.ps1
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Account", "Account", "{359D55BB-46A2-4906-B92D-01454AB15625}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Portfolio", "Portfolio", "{359D55BB-46A2-4906-B92D-01454AB15625}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundAggregator.Account", "FundAggregator.Account\FundAggregator.Account.csproj", "{3AAA361B-3E41-4D81-BD3E-4004BC64D05D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundAggregator.Portfolio", "FundAggregator.Account\FundAggregator.Portfolio.csproj", "{3AAA361B-3E41-4D81-BD3E-4004BC64D05D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAggregator", "DataAggregator", "{E390C02D-A1BD-4F08-A160-3CEE1DB49FAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundAggregator.Worker.CharlesStanley", "FundAggregator.Worker.HargreavesLansdown\FundAggregator.Worker.CharlesStanley.csproj", "{1270742A-D64F-4279-8BF1-49FB968240B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundAggregator.Worker.CharlesStanley", "FundAggregator.Worker.HargreavesLansdown\FundAggregator.Worker.CharlesStanley.csproj", "{1270742A-D64F-4279-8BF1-49FB968240B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundAggregator.Worker.Shared", "FundAggregator.Worker.Contracts\FundAggregator.Worker.Shared.csproj", "{56E79418-1FA4-49B1-85AA-53E50E30D98A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundAggregator.Worker.Shared", "FundAggregator.Worker.Contracts\FundAggregator.Worker.Shared.csproj", "{56E79418-1FA4-49B1-85AA-53E50E30D98A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundAggregator.Portfolio.Contracts", "FundAggregator.Portfolio.Contracts\FundAggregator.Portfolio.Contracts.csproj", "{BE155F49-EA6B-4D41-9CF1-F9D41B857C09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +66,10 @@ Global
 		{56E79418-1FA4-49B1-85AA-53E50E30D98A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56E79418-1FA4-49B1-85AA-53E50E30D98A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56E79418-1FA4-49B1-85AA-53E50E30D98A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE155F49-EA6B-4D41-9CF1-F9D41B857C09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE155F49-EA6B-4D41-9CF1-F9D41B857C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE155F49-EA6B-4D41-9CF1-F9D41B857C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE155F49-EA6B-4D41-9CF1-F9D41B857C09}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +82,7 @@ Global
 		{3AAA361B-3E41-4D81-BD3E-4004BC64D05D} = {359D55BB-46A2-4906-B92D-01454AB15625}
 		{1270742A-D64F-4279-8BF1-49FB968240B2} = {E390C02D-A1BD-4F08-A160-3CEE1DB49FAA}
 		{56E79418-1FA4-49B1-85AA-53E50E30D98A} = {E390C02D-A1BD-4F08-A160-3CEE1DB49FAA}
+		{BE155F49-EA6B-4D41-9CF1-F9D41B857C09} = {359D55BB-46A2-4906-B92D-01454AB15625}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32421542-FA55-4FF6-AB9D-DDDBABE0FAF1}
