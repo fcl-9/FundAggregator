@@ -32,9 +32,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MessageIngestor", "MessageI
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FungAggregator.Ingestor.Service", "FungAggregator.Ingestor.Dummy\FungAggregator.Ingestor.Service.csproj", "{9AF64FD9-69DE-4475-9E0A-D7CA50673F77}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "History", "History", "{9404826A-FB08-4DCD-ABB6-EBDA497009B8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundAggregator.Portfolio.Infrastructure", "FundAggregator.Portfolio.Infrastructure\FundAggregator.Portfolio.Infrastructure.csproj", "{40740E2C-EF41-4AF9-A2EE-7B97E153D82F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundAggregator.Portfolio.Infrastructure", "FundAggregator.Portfolio.Infrastructure\FundAggregator.Portfolio.Infrastructure.csproj", "{40740E2C-EF41-4AF9-A2EE-7B97E153D82F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

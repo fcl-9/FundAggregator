@@ -10,12 +10,13 @@ namespace FundAggregator.Worker.CharlesStanley.Services
 {
     public class DataExtractorService : IDataExtractorService
     {
-        const string fundNameRegexPattern = "(\")(.*?)(\")";
+        const string fundNameRegexPattern = "(?<=<meta content=\").*(?=\" name=\"Fund_Title\")";
         const string topTenSectorsInitialRegexPattern = "(var dataCompositionSectors =?)";
         const string topTenSectorsRegexPattern = @"(var dataCompositionSectors =?)(.*?)(])";
         const string topTenGeographyInitialRegexPattern = "(var dataCompositionGeography =?)";
         const string topTenGeographyRegexPattern = @"(var dataCompositionGeography =?)(.*?)(])";
         const string removePercentages = @"\(.*?\)";
+
         private ILogger<DataExtractorService> _logger;
 
         public DataExtractorService(ILogger<DataExtractorService> logger) {
