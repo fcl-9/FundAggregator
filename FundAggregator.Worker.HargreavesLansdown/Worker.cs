@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using FundAggregator.Worker.CharlesStanley;
@@ -29,25 +30,33 @@ namespace FundAggregator.Worker.CharlesStanley
         //time trigger and publishes a message to a queue with the raw data that was retrieved.
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            var portfolioSedol = new List<string>()
+            {
+                "B3TYHH9",
+                "504245"
+            };
             while (!stoppingToken.IsCancellationRequested)
             {
-                _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
+                foreach(var sedol in portfolioSedol)
+                {
+                    _logger.LogInformation("Worker running at: {time}", DateTimeOffset.Now);
 
-                var httpResponse = await _dataPulling.GetFundDataBySedol("B3TYHH9").ConfigureAwait(false);
-                var rawData = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                    var httpResponse = await _dataPulling.GetFundDataBySedol(sedol).ConfigureAwait(false);
+                    var rawData = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-                var fundName = _dataExtractionService.ExtractFundName(rawData);
-                var topTenGeography = _dataExtractionService.ExtractTopTenGeographies(rawData);
-                var topTenSectors = _dataExtractionService.ExtractTopTenSectors(rawData);
+                    var fundName = _dataExtractionService.ExtractFundName(rawData);
+                    var topTenGeography = _dataExtractionService.ExtractTopTenGeographies(rawData);
+                    var topTenSectors = _dataExtractionService.ExtractTopTenSectors(rawData);
 
-                var fundData = new FundAggregatorDataBuilder()
-                    .WithFundName(fundName)
-                    .WithFundIdentifiers(string.Empty, string.Empty, string.Empty)
-                    .WithTopTenGeography(topTenGeography)
-                    .WithTopTenSectors(topTenSectors)
-                    .Build();
+                    var fundData = new FundAggregatorDataBuilder()
+                        .WithFundName(fundName)
+                        .WithFundIdentifiers(string.Empty, string.Empty, string.Empty)
+                        .WithTopTenGeography(topTenGeography)
+                        .WithTopTenSectors(topTenSectors)
+                        .Build();
 
-                _fundDataRepo.CreateFundData(fundData);
+                    _fundDataRepo.CreateFundData(fundData);
+                }
 
                 // Run Each 24 Hours
                 await Task.Delay(86400000, stoppingToken);

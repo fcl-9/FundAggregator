@@ -15,7 +15,9 @@ namespace FundAggregator.Worker.Shared.DataTransferObject
         // Compostion
         public Dictionary<string, decimal> TopTenGeography { get; }
         public Dictionary<string, decimal> TopTenSectors { get; }
-        
+        public DateTime CreatedDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
+
         public FundAggregatorData() {
             TopTenGeography = new Dictionary<string, decimal>();
             TopTenSectors = new Dictionary<string, decimal>();

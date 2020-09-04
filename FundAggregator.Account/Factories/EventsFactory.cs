@@ -1,9 +1,6 @@
 ﻿using FundAggregator.Portfolio.Contracts.Events;
 using FundAggregator.Portfolio.Contracts.Interfaces;
-using NServiceBus;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FundAggregator.Portfolio.Service.Factories
 {
@@ -13,7 +10,8 @@ namespace FundAggregator.Portfolio.Service.Factories
         {
             return new CreatedPortfolio()
             {
-                PortfolioId = portfolioId
+                PortfolioId = portfolioId,
+                CreatedDate = DateTime.UtcNow
             };
         }
 
@@ -21,7 +19,8 @@ namespace FundAggregator.Portfolio.Service.Factories
         {
             return new UpdatedPortfolio()
             {
-                PortfolioId = portfolioId
+                PortfolioId = portfolioId,
+                CreatedDate = DateTime.UtcNow
             };
         }
     }
