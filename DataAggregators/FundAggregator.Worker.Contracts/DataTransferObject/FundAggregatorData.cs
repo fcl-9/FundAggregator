@@ -6,16 +6,15 @@ namespace FundAggregator.Worker.Shared.DataTransferObject
     public class FundAggregatorData
     {
         public string FundName { get; set; }
-        
+        public string Issuer { get; set; }
+
         // Fund Identifiers
-        public string Sedol { get; set; }
-        public string Apir { get; set; }
-        public string Isin { get; set; }
+        public FundIdentifiers FundIdentifiders { get; set; }
 
         // Compostion
         public Dictionary<string, decimal> TopTenGeography { get; }
         public Dictionary<string, decimal> TopTenSectors { get; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set;  }
         public DateTime ModifiedDate { get; set; }
 
         public FundAggregatorData() {

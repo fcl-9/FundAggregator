@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAggregator", "DataAggregator", "{E390C02D-A1BD-4F08-A160-3CEE1DB49FAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundAggregator.Data.HargreavesLansdown", "DataAggregators\FundAggregator.Data.HargreavesLansdown\FundAggregator.Data.HargreavesLansdown.csproj", "{C596E334-294C-41F2-B710-2D8BB49E1F88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundAggregator.Data.HargreavesLansdown", "DataAggregators\FundAggregator.Data.HargreavesLansdown\FundAggregator.Data.HargreavesLansdown.csproj", "{C596E334-294C-41F2-B710-2D8BB49E1F88}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundAggregator.Worker.Shared", "DataAggregators\FundAggregator.Worker.Contracts\FundAggregator.Worker.Shared.csproj", "{144B8100-EB1B-4867-A145-A3C6681F7F9B}"
 EndProject

@@ -4,6 +4,8 @@ using OpenQA.Selenium;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using FundAggregator.Data.HargreavesLansdown.Builder;
+using FundAggregator.Worker.Shared.DataTransferObject;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
@@ -22,15 +24,24 @@ namespace FundAggregator.Data.HargreavesLansdown.Services
             _dataExtraction = dataExtraction;
         }
 
-        public void GetFundData(string fundIdentifier)
+        public FundAggregatorData GetFundData(string fundIdentifier)
         {
-            _webDriver.Navigate();
             var fundUrl = SearchByFundIdentifier(fundIdentifier);
-            _webDriver.Url = fundUrl;
-            _webDriver.Navigate();
-            _dataExtraction.ExtractFundName(_webDriver);
-            _dataExtraction.ExtractTopTenGeographies(_webDriver);
-            _dataExtraction.ExtractTopTenSectors(_webDriver);
+            NavigateToFundUrl(fundUrl);
+
+            var fundName = _dataExtraction.ExtractFundName(_webDriver);
+            var fundIssuer = _dataExtraction.ExtractFundIssuer(_webDriver);
+            var fundIdentifiers = _dataExtraction.ExtractFundIdentifiers(_webDriver, fundIdentifier);
+            var topTenGrography = _dataExtraction.ExtractTopTenGeographies(_webDriver);
+            var topTenSectors = _dataExtraction.ExtractTopTenSectors(_webDriver);
+
+            return new FundAggregatorDataBuilder()
+                .WithFundName(fundName)
+                .WithFundIssuer(fundIssuer)
+                .WithFundIdentifiers(fundIdentifiers)
+                .WithTopTenGeography(topTenGrography)
+                .WithTopTenSectors(topTenSectors)
+                .Build();
         }
 
         public string SearchByFundIdentifier(string fundIdentifier)
@@ -57,6 +68,9 @@ namespace FundAggregator.Data.HargreavesLansdown.Services
             return redirectUrl.GetAttribute("href");
         }
 
-
+        public void NavigateToFundUrl(string url)
+        {
+            _webDriver.Url = url;
+        }
     }
 }
